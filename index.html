@@ -1,0 +1,119 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>URBAN DROP 4</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#fff;color:#111;font-family:Arial,Tahoma,sans-serif;padding-bottom:85px}.top{height:42px;background:#05070a;color:#fff;text-align:center;padding:11px 4px;font-size:12px}.top b{color:#1984ff}
+header{height:78px;background:#05070a;display:flex;align-items:center;justify-content:space-between;padding:0 15px;color:#fff}.logo{text-align:center;font-weight:900;font-size:19px;letter-spacing:1px;cursor:pointer}.logo span{display:block;color:#1984ff;font-size:9px;letter-spacing:2px;margin-top:5px}.circle{width:45px;height:45px;border-radius:50%;background:#11151b;border:1px solid #3b414a;color:#fff;font-size:21px;position:relative;cursor:pointer}.badge{position:absolute;top:-4px;right:-3px;background:#1984ff;color:#fff;border-radius:50%;width:19px;height:19px;font-size:10px;display:grid;place-items:center}
+.hero{margin:16px;border-radius:22px;min-height:390px;background:linear-gradient(135deg,#05070a,#172231);color:#fff;padding:38px 25px;display:flex;align-items:center;justify-content:space-between;overflow:hidden}.hero small{color:#1984ff;letter-spacing:3px}.hero h1{font-size:48px;line-height:1.15;margin:18px 0}.hero h1 em{font-style:normal;color:#1984ff}.hero p{color:#d0d6de;line-height:1.8}.btn{background:#1984ff;color:#fff;border:0;border-radius:10px;padding:14px 23px;font-weight:800;cursor:pointer}.bottle{width:115px;height:215px;border:2px solid #1984ff;border-radius:18px 18px 12px 12px;display:grid;place-items:center;color:#1984ff;font-weight:900;box-shadow:0 0 50px #1984ff55;transform:rotate(-7deg)}
+.features{padding:0 16px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.features div{background:#f3f5f7;border-radius:14px;text-align:center;padding:16px 4px}.features b,.features small{display:block}.features b{font-size:12px;margin-top:6px}.features small{font-size:9px;color:#666;margin-top:4px}
+section.products{padding:30px 16px}h2{font-size:30px;margin:0 0 20px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.card{border:1px solid #e1e5e9;border-radius:16px;padding:10px;background:#fff}.pic{height:155px;border-radius:12px;background:linear-gradient(145deg,#080a0d,#1d2b3c);color:#1984ff;display:grid;place-items:center;text-align:center;font-weight:900;letter-spacing:2px}.card h3{font-size:14px;margin:11px 0 5px}.card p{font-size:11px;color:#777;margin:0 0 8px}.price{font-weight:900}.add{width:100%;padding:10px;background:#05070a;color:#fff;border:0;border-radius:9px;cursor:pointer;margin-top:8px}
+nav{height:76px;position:fixed;bottom:0;left:0;right:0;background:#05070a;z-index:20;display:flex;justify-content:space-around}nav button{background:none;border:0;color:#fff;min-width:30%;font-size:23px;position:relative;cursor:pointer}nav small{display:block;font-size:10px;color:#cbd0d7;margin-top:4px}.panel{display:none;position:fixed;inset:0;background:#fff;z-index:30;padding:20px}.panel.open{display:block}.panel-head{display:flex;justify-content:space-between;align-items:center}.x{background:#05070a;color:#fff;border:0;border-radius:9px;width:42px;height:42px;font-size:24px}.cart-row{padding:14px;margin:10px 0;background:#f3f5f7;border-radius:12px;display:flex;justify-content:space-between}.search{display:flex;gap:8px}.search-result{cursor:pointer}.search input{flex:1;padding:13px;border:1px solid #bbb;border-radius:10px;font-size:16px}
+@media(min-width:700px){.grid{grid-template-columns:repeat(4,1fr)}.hero{min-height:500px}.hero h1{font-size:65px}}
+
+.checkout-btn{width:100%;padding:14px;background:#1984ff;color:#fff;border:0;border-radius:10px;font-weight:800;font-size:15px;margin-top:12px;cursor:pointer}.form-grid{display:grid;gap:10px;margin-top:15px}.form-grid input,.form-grid textarea,.form-grid select{width:100%;padding:13px;border:1px solid #ccd2d8;border-radius:10px;font:inherit}.form-grid textarea{min-height:80px;resize:vertical}.order-note{background:#f3f5f7;border-radius:12px;padding:12px;margin-top:12px;font-size:12px;color:#555}.success{display:none;text-align:center;padding:35px 10px}.success.open{display:block}.success .check{font-size:48px}.success h2{font-size:25px;margin:12px 0 8px}.success p{color:#666;line-height:1.7}.back-cart{margin-top:12px;width:100%;padding:12px;border:1px solid #ccd2d8;background:#fff;border-radius:10px;font-weight:700}
+</style></head><body>
+<div class="top"><span id="topText">🚚 توصيل لجميع أنحاء المغرب</span> &nbsp; • &nbsp; <b id="paymentText">💵 الدفع عند الاستلام</b></div>
+<header><button class="circle" id="searchBtn" type="button" aria-label="البحث">⌕</button><div class="logo" id="secret">URBAN DROP 4<span>PERFUME & STYLE</span></div><button class="circle" id="cartBtn" type="button" aria-label="السلة">🛒<i class="badge" id="count">0</i></button></header>
+<div class="hero" id="hero"><div><small id="heroSmall">NEW COLLECTION · 2026</small><h1 id="heroTitle">عطرك.<br><em>ستايلك.</em></h1><p id="heroDesc">اكتشف مجموعتنا المختارة من العطور الفاخرة، بتجربة سهلة وتوصيل لجميع أنحاء المغرب.</p><button class="btn" id="heroButton" onclick="goProducts()">اكتشف العطور ←</button></div><div class="bottle">UD4</div></div>
+<div class="features"><div>🚚<b>توصيل سريع</b><small>جميع المدن</small></div><div>💵<b>الدفع عند الاستلام</b><small>بكل سهولة</small></div><div>✓<b>جودة مختارة</b><small>ثقة وجودة</small></div></div>
+
+<div class="panel" id="cartPanel"><div class="panel-head"><h2>السلة</h2><button class="x" onclick="closePanel('cartPanel')">×</button></div><div id="cartList"></div><h3 id="total">المجموع: 0 DH</h3><button class="checkout-btn" id="checkoutBtn" onclick="openCheckout()" style="display:none">إتمام الطلب →</button></div><div class="panel" id="checkoutPanel"><div class="head"><h2>إتمام الطلب</h2><button class="x" onclick="closeCheckout()">×</button></div><div id="checkoutBody"><div class="order-note">💵 الدفع عند الاستلام — خلّي معلوماتك صحيحة باش نتواصلو معاك لتأكيد الطلب.</div><form class="form-grid" id="orderForm" onsubmit="submitOrder(event)"><input id="customerName" required placeholder="الاسم الكامل"><input id="customerPhone" required type="tel" placeholder="رقم الهاتف"><input id="customerCity" required placeholder="المدينة"><textarea id="customerAddress" required placeholder="العنوان بالتفصيل"></textarea><select id="customerDelivery" required><option value="">طريقة التوصيل</option><option>التوصيل للعنوان</option></select><button class="checkout-btn" type="submit">تأكيد الطلب · الدفع عند الاستلام</button></form></div><div class="success" id="orderSuccess"><div class="check">✅</div><h2>تم إرسال الطلب</h2><p>شكراً لك! توصلنا بطلبك بنجاح. غادي نتواصلو معاك على رقم الهاتف لتأكيد الطلب.</p><button class="back-cart" onclick="closeCheckout();closePanel && closePanel('cartPanel')">العودة للمتجر</button></div></div>
+<div class="panel" id="searchPanel"><div class="panel-head"><h2>البحث</h2><button class="x" onclick="closePanel('searchPanel')">×</button></div><div class="search"><input id="q" placeholder="ابحث عن عطر..."></div><div id="results"></div></div>
+<nav><button onclick="scrollTo(0,0)">⌂<small>الرئيسية</small></button><button onclick="goProducts()">♢<small>العطور</small></button><button onclick="openCart()">🛒<small>السلة</small><i class="badge" id="count2">0</i></button></nav>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const DEFAULT_P = [
+    ['NOIR INTENSE',249,'عطر رجالي أنيق بحضور قوي ولمسة عصرية.'],
+    ['BLUE NIGHT',229,'عطر منعش مناسب للاستعمال اليومي والمناسبات.'],
+    ['URBAN GOLD',279,'تركيبة فاخرة لمن يبحث عن حضور مميز.'],
+    ['PURE MUSK',219,'رائحة ناعمة ونظيفة بلمسة أنيقة.'],
+    ['BLACK OUD',299,'عود فاخر برائحة عميقة وثابتة.'],
+    ['URBAN FRESH',239,'انتعاش خفيف وأنيق للاستخدام اليومي']
+  ];
+  let P = JSON.parse(localStorage.getItem('ud4products') || 'null');
+  if (!Array.isArray(P)) {
+    P = DEFAULT_P.map((x,i)=>({id:'p'+(i+1),name:x[0],price:x[1],desc:x[2],image:''}));
+    localStorage.setItem('ud4products', JSON.stringify(P));
+  }
+  let cart = JSON.parse(localStorage.getItem('ud4cart') || '[]');
+  if (!Array.isArray(cart)) cart=[];
+
+  const DEFAULT_SETTINGS={brand:'URBAN DROP 4',tagline:'PERFUME & STYLE',topText:'🚚 توصيل لجميع أنحاء المغرب',payment:'💵 الدفع عند الاستلام',heroSmall:'NEW COLLECTION · 2026',heroTitle:'عطرك.|ستايلك.',heroDesc:'اكتشف مجموعتنا المختارة من العطور الفاخرة، بتجربة سهلة وتوصيل لجميع أنحاء المغرب.',heroButton:'اكتشف العطور ←',productsTitle:'الأكثر طلباً',accent:'#d4af37',bg:'#090909',font:'Arial, Tahoma, sans-serif',bgImage:'',heroVisible:true};
+  let savedSettings={};
+  try { savedSettings=JSON.parse(localStorage.getItem('ud4settings') || '{}') || {}; } catch(e) {}
+  const SETTINGS=Object.assign({},DEFAULT_SETTINGS,savedSettings);
+
+  function applySettings(){
+    const logo=$('secret');
+    if(logo){
+      logo.childNodes[0].textContent=SETTINGS.brand;
+      const span=logo.querySelector('span'); if(span) span.textContent=SETTINGS.tagline;
+    }
+    const setText=(id,val)=>{const el=$(id);if(el)el.textContent=val;};
+    setText('topText',SETTINGS.topText); setText('paymentText',SETTINGS.payment);
+    setText('heroSmall',SETTINGS.heroSmall); setText('heroDesc',SETTINGS.heroDesc);
+    const title=$('heroTitle'); if(title) title.innerHTML=String(SETTINGS.heroTitle).split('|').map((x,i)=>i===0?x:'<br><em>'+x+'</em>').join('');
+    setText('heroButton',SETTINGS.heroButton); setText('productsTitle',SETTINGS.productsTitle);
+    document.documentElement.style.setProperty('--accent',SETTINGS.accent);
+    document.body.style.backgroundColor=SETTINGS.bg||'#090909';
+    document.body.style.fontFamily=SETTINGS.font||DEFAULT_SETTINGS.font;
+    if(SETTINGS.bgImage){document.body.style.backgroundImage='linear-gradient(rgba(0,0,0,.72),rgba(0,0,0,.72)),url("'+SETTINGS.bgImage+'")';document.body.style.backgroundSize='cover';document.body.style.backgroundAttachment='fixed';document.body.style.backgroundPosition='center'}else document.body.style.backgroundImage='none';
+    const hero=$('hero'); if(hero) hero.style.display=SETTINGS.heroVisible?'flex':'none';
+    document.querySelectorAll('.top b,.logo span,.hero small,.hero h1 em,.bottle').forEach(x=>x.style.color=SETTINGS.accent);
+    const btn=$('heroButton'); if(btn) btn.style.background=SETTINGS.accent;
+  }
+
+  function save(){localStorage.setItem('ud4cart',JSON.stringify(cart));update();}
+  function update(){
+    const count=String(cart.length);
+    if($('count')) $('count').textContent=count;
+    if($('count2')) $('count2').textContent=count;
+    const list=$('cartList');
+    if(list) list.innerHTML=cart.length ? cart.map(i=>P[i] ? '<div class="cart-row"><span>'+P[i].name+'</span><b>'+P[i].price+' DH</b></div>' : '').join('') : '<p>السلة خاوية حالياً.</p>';
+    if($('total')) $('total').textContent='المجموع: '+cart.reduce((s,i)=>s+(P[i]?Number(P[i].price):0),0)+' DH';
+    if($('checkoutBtn')) $('checkoutBtn').style.display=cart.length?'block':'none';
+  }
+  function render(){
+    const grid=$('grid'); if(!grid) return;
+    grid.innerHTML=P.map((p,i)=>'<article class="card"><div class="pic">'+(p.image?'<img src="'+p.image+'" style="width:100%;height:100%;object-fit:cover;border-radius:12px">':p.name)+'</div><h3>'+p.name+'</h3><p>'+p.desc+'</p><div class="price">'+p.price+' DH</div><button class="add" type="button" data-add="'+i+'">أضف للسلة</button></article>').join('');
+    grid.querySelectorAll('[data-add]').forEach(b=>b.addEventListener('click',()=>add(Number(b.dataset.add))));
+    update();
+  }
+  function add(i){if(!P[i])return;cart.push(i);save();alert('تمت إضافة '+P[i].name+' للسلة 🛒');}
+  function openCart(){$('cartPanel')?.classList.add('open');update();}
+  function closePanel(id){$(id)?.classList.remove('open');}
+  function openCheckout(){if(!cart.length){alert('السلة خاوية');return;}closePanel('cartPanel');$('checkoutPanel')?.classList.add('open');}
+  function closeCheckout(){$('checkoutPanel')?.classList.remove('open');}
+  function goProducts(){window.location.href='products.html';}
+  function submitOrder(e){
+    e.preventDefault(); if(!cart.length)return;
+    let orders=[]; try{orders=JSON.parse(localStorage.getItem('ud4orders')||'[]');if(!Array.isArray(orders))orders=[];}catch(x){}
+    orders.push({name:$('customerName').value,phone:$('customerPhone').value,city:$('customerCity').value,address:$('customerAddress').value,delivery:$('customerDelivery').value,total:cart.reduce((s,i)=>s+(P[i]?Number(P[i].price):0),0),items:cart.map(i=>P[i]?.name).filter(Boolean),date:new Date().toISOString(),status:'جديد'});
+    localStorage.setItem('ud4orders',JSON.stringify(orders));cart=[];save();
+    const body=$('checkoutBody');if(body)body.style.display='none';$('orderSuccess')?.classList.add('open');
+  }
+  function openSearch(){$('searchPanel')?.classList.add('open');$('q')?.focus();}
+  const search=$('q');
+  if(search) search.addEventListener('input',()=>{
+    const v=search.value.trim().toLowerCase(), results=$('results'); if(!results)return;
+    results.innerHTML=P.map((p,i)=>({p,i})).filter(x=>!v||x.p.name.toLowerCase().includes(v)||(x.p.desc||'').toLowerCase().includes(v)).map(x=>'<div class="cart-row search-result" role="button" tabindex="0" data-product="'+x.i+'"><span>'+x.p.name+'</span><b>'+x.p.price+' DH</b></div>').join('');
+    results.querySelectorAll('[data-product]').forEach(el=>{const go=()=>window.location.href='product.html?id='+el.dataset.product;el.addEventListener('click',go);el.addEventListener('keydown',e=>{if(e.key==='Enter')go();});});
+  });
+  $('cartBtn')?.addEventListener('click',openCart);
+  $('searchBtn')?.addEventListener('click',openSearch);
+  $('heroButton')?.addEventListener('click',goProducts);
+  document.querySelectorAll('nav button').forEach((b,i)=>b.addEventListener('click',()=>{if(i===0)window.scrollTo(0,0);else if(i===1)goProducts();else openCart();}));
+  $('checkoutBtn')?.addEventListener('click',openCheckout);
+  $('orderForm')?.addEventListener('submit',submitOrder);
+  document.querySelectorAll('.x').forEach(b=>b.addEventListener('click',()=>{const p=b.closest('.panel');if(p)p.classList.remove('open');}));
+
+  let taps=0,timer;
+  const secret=$('secret');
+  if(secret){
+    const tap=e=>{if(e.type==='touchend')e.preventDefault();taps++;clearTimeout(timer);timer=setTimeout(()=>taps=0,900);if(taps===3){taps=0;const pass=prompt('كلمة سر لوحة التحكم');if(pass==='2007')window.location.href='admin.html';else if(pass!==null)alert('كلمة السر غير صحيحة');}};
+    secret.addEventListener('click',tap);secret.addEventListener('touchend',tap,{passive:false});
+  }
+  window.openCart=openCart;window.closePanel=closePanel;window.openCheckout=openCheckout;window.closeCheckout=closeCheckout;window.goProducts=goProducts;
+  applySettings();render();
+})();
+</script>
+</body></html>
