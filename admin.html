@@ -1,0 +1,120 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>لوحة التحكم — URBAN DROP 4</title><style>
+*{box-sizing:border-box}body{margin:0;background:#090909;color:#fff;font-family:Arial,Tahoma,sans-serif}.wrap{max-width:1000px;margin:auto;padding:18px}.head{display:flex;justify-content:space-between;align-items:center;padding:12px 0 18px;border-bottom:1px solid #332b18}.logo{color:#d4af37;font-size:24px;font-weight:900}.logo span{display:block;font-size:9px;letter-spacing:3px;color:#9f9059;margin-top:5px}.back,.btn{border:1px solid #66531c;background:#17130a;color:#d4af37;padding:10px 14px;border-radius:10px;font-weight:700}.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:18px 0}.tab{padding:14px 7px;background:#141414;border:1px solid #302714;color:#aaa;border-radius:12px;font-weight:800}.tab.active{background:#d4af37;color:#090909}.view{display:none}.view.active{display:block}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat,.card{background:#141414;border:1px solid #302714;border-radius:16px;padding:16px}.stat b{font-size:25px;color:#d4af37;display:block}.stat small{color:#aaa}.section-title{display:flex;justify-content:space-between;align-items:center;margin:20px 0 10px}.section-title h2{margin:0;color:#d4af37;font-size:20px}.products{display:grid;gap:10px}.product{display:flex;gap:12px;align-items:center;background:#141414;border:1px solid #302714;border-radius:14px;padding:10px}.thumb{width:65px;height:65px;border-radius:10px;background:#0b0b0b;display:grid;place-items:center;color:#d4af37;font-size:10px;text-align:center;overflow:hidden}.thumb img{width:100%;height:100%;object-fit:cover}.pinfo{flex:1}.pinfo b{display:block}.pinfo small{color:#999}.price{color:#d4af37;font-weight:900;margin-top:5px}.actions{display:flex;gap:6px}.actions button{border:0;border-radius:8px;padding:8px 10px;font-weight:700}.edit{background:#d4af37}.delete{background:#2b1717;color:#ff8d8d}.form{display:grid;gap:10px}.form input,.form textarea,.form select{width:100%;padding:12px;border-radius:10px;border:1px solid #40371f;background:#0f0f0f;color:#fff;font:inherit}.form textarea{min-height:80px}.save{background:#d4af37;color:#080808;border:0;padding:13px;border-radius:10px;font-weight:900}.orders{display:grid;gap:10px}.order{background:#141414;border:1px solid #302714;border-radius:14px;padding:14px}.order .topline{display:flex;justify-content:space-between;gap:8px}.order strong{color:#d4af37}.status{background:#241f10;color:#d4af37;border:1px solid #66531c;border-radius:20px;padding:5px 9px;font-size:11px}.order p{margin:8px 0;color:#bbb;line-height:1.7}.empty{color:#999;text-align:center;padding:30px}.hint{color:#888;font-size:12px;line-height:1.7}@media(max-width:600px){.stats{grid-template-columns:1fr 1fr}.stats .stat:last-child{grid-column:1/-1}.product{align-items:flex-start}.actions{flex-direction:column}.head{gap:10px}.logo{font-size:19px}}
+</style></head><body><div class="wrap"><div class="head"><div class="logo">URBAN DROP 4<span>ADMIN PANEL</span></div><button class="back" onclick="location.href='index.html'">العودة للمتجر</button></div>
+<div class="tabs"><button class="tab active" onclick="show('dashboard',this)">📊 الرئيسية</button><button class="tab" onclick="show('products',this)">🛍️ المنتجات</button><button class="tab" onclick="show('orders',this)">📦 الطلبات</button><button class="tab" onclick="show('settings',this)">⚙️ الإعدادات</button></div>
+<section id="dashboard" class="view active"><div class="stats"><div class="stat"><b id="statProducts">0</b><small>المنتجات</small></div><div class="stat"><b id="statOrders">0</b><small>الطلبات</small></div><div class="stat"><b id="statSales">0 DH</b><small>إجمالي الطلبات</small></div></div><div class="card" style="margin-top:12px"><div class="section-title"><h2>شنو تقدر تدير من هنا؟</h2></div><p class="hint">من لوحة التحكم تقدر تزيد منتج جديد، تبدل الاسم والثمن والوصف والصورة، تحذف المنتجات التجريبية، وتشوف الطلبات اللي جاية من الزبناء وتبدل حالتها.</p></div></section>
+<section id="settings" class="view"><div class="section-title"><h2>إعدادات المتجر</h2><button class="btn" onclick="resetSettings()">↺ إعادة الافتراضي</button></div><div class="card"><p class="hint">من هنا تقدر تبدل محتوى الصفحة الرئيسية بلا ما تدخل للكود. التغييرات كتتحفظ مباشرة فالمتصفح وكتبان فالمتجر.</p><form class="form" onsubmit="saveSettings(event)"><input id="sBrand" required placeholder="اسم المتجر"><input id="sTagline" placeholder="النص الصغير تحت الاسم"><input id="sTopText" placeholder="رسالة الشريط العلوي"><input id="sPayment" placeholder="نص الدفع عند الاستلام"><input id="sHeroSmall" placeholder="النص الصغير في البانر"><input id="sHeroTitle" required placeholder="عنوان البانر (يمكن استعمال | للسطر الجديد)"><textarea id="sHeroDesc" placeholder="وصف البانر"></textarea><input id="sHeroButton" placeholder="نص زر البانر"><input id="sProductsTitle" placeholder="عنوان قسم المنتجات"><div style="display:grid;gap:10px;grid-template-columns:1fr 1fr"><label class="hint">لون المتجر<input id="sAccent" type="color" value="#d4af37" style="width:100%;height:45px;margin-top:5px"></label><label class="hint">لون خلفية الموقع<input id="sBg" type="color" value="#090909" style="width:100%;height:45px;margin-top:5px"></label></div><label class="hint">نوع الخط<select id="sFont"><option value="Arial, Tahoma, sans-serif">Arial / Tahoma</option><option value="Georgia, serif">Georgia</option><option value="Verdana, sans-serif">Verdana</option><option value="Trebuchet MS, sans-serif">Trebuchet MS</option><option value="Courier New, monospace">Courier New</option></select></label><label class="hint">صورة خلفية الموقع<input id="sBgImage" type="file" accept="image/*"></label><p class="hint">تقدر تختار صورة من الهاتف كخلفية. إذا ما بغيتهاش، خليها فارغة. الصورة كتتحفظ محلياً لهذا الاختبار.</p><label style="display:flex;align-items:center;gap:8px;color:#bbb"><input id="sHeroVisible" type="checkbox" checked style="width:auto"> إظهار البانر الرئيسي</label><button class="save">حفظ الإعدادات</button></form></div></section>
+<section id="products" class="view"><div class="section-title"><h2>إدارة المنتجات</h2><button class="btn" onclick="newProduct()">＋ إضافة منتج</button></div><div id="productList" class="products"></div><div id="editor" class="card" style="display:none;margin-top:12px"><div class="section-title"><h2 id="editorTitle">منتج جديد</h2><button class="btn" onclick="closeEditor()">إلغاء</button></div><form class="form" onsubmit="saveProduct(event)"><input id="pid" type="hidden"><input id="pname" required placeholder="اسم المنتج"><input id="pprice" required type="number" min="0" placeholder="الثمن بالدرهم"><textarea id="pdesc" placeholder="وصف المنتج"></textarea><input id="pimage" type="file" accept="image/*"><p class="hint">اختياري: اختار صورة من الهاتف. الصورة كتتحفظ داخل المتصفح لهذا الاختبار.</p><button class="save">حفظ المنتج</button></form></div></section>
+<section id="orders" class="view"><div class="section-title"><h2>الطلبات</h2><button class="btn" onclick="renderOrders()">↻ تحديث</button></div><div id="orderList" class="orders"></div></section></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+
+const SUPABASE_URL = 'https://irdkrwfopmzplbkosfle.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_ht0kkZsnW3SMVt08TLaTaw_wXyNTJlv';
+const sbPublic = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+function makeAdminClient(password){
+  return window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+    global:{headers:{'x-ud4-admin-password':password}}
+  });
+}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+
+const defaults=[['p1','NOIR INTENSE',249,'عطر رجالي أنيق بحضور قوي ولمسة عصرية.'],['p2','BLUE NIGHT',229,'عطر منعش مناسب للاستعمال اليومي والمناسبات.'],['p3','URBAN GOLD',279,'تركيبة فاخرة لمن يبحث عن حضور مميز.'],['p4','PURE MUSK',219,'رائحة ناعمة ونظيفة بلمسة أنيقة.'],['p5','BLACK OUD',299,'عود فاخر برائحة عميقة وثابتة.'],['p6','URBAN FRESH',239,'انتعاش خفيف وأنيق للاستخدام اليومي']];
+const DEFAULT_SETTINGS={brand:'URBAN DROP 4',tagline:'PERFUME & STYLE',topText:'🚚 توصيل لجميع أنحاء المغرب',payment:'💵 الدفع عند الاستلام',heroSmall:'NEW COLLECTION · 2026',heroTitle:'عطرك.|ستايلك.',heroDesc:'اكتشف مجموعتنا المختارة من العطور الفاخرة، بتجربة سهلة وتوصيل لجميع أنحاء المغرب.',heroButton:'اكتشف العطور ←',productsTitle:'الأكثر طلباً',accent:'#d4af37',bg:'#090909',font:'Arial, Tahoma, sans-serif',bgImage:'',heroVisible:true};
+let adminPassword=sessionStorage.getItem('ud4AdminPassword')||'';
+let admin=null,products=[],settings={...DEFAULT_SETTINGS};
+
+async function login(){
+  if(!adminPassword) adminPassword=prompt('كلمة سر لوحة التحكم');
+  if(adminPassword===null){location.href='index.html';return false}
+  admin=makeAdminClient(adminPassword);
+  const pub=await sbPublic.from('settings').select('data').eq('id',1).maybeSingle();
+  const checkData=Object.assign({},DEFAULT_SETTINGS,pub.data?.data||{});
+  const check=await admin.from('settings').upsert({id:1,data:checkData});
+  if(check.error){
+    alert('كلمة السر غير صحيحة أو تعذر الاتصال بـ Supabase.');
+    sessionStorage.removeItem('ud4AdminPassword');adminPassword='';return login();
+  }
+  sessionStorage.setItem('ud4AdminPassword',adminPassword);
+  return true;
+}
+async function migrateLocalData(){
+  if(localStorage.getItem('ud4CloudMigrated')==='1')return;
+  try{
+    const lp=JSON.parse(localStorage.getItem('ud4products')||'null');
+    if(Array.isArray(lp)&&lp.length){
+      for(const p of lp){
+        let image=p.image_url||p.image||'';
+        if(image.startsWith('data:image/')){
+          try{
+            const blob=await (await fetch(image)).blob();
+            const ext=(blob.type.split('/')[1]||'jpeg').replace('jpeg','jpg');
+            const path='migrated/'+p.id+'-'+Date.now()+'.'+ext;
+            const up=await admin.storage.from('ud4-products').upload(path,blob,{upsert:true,contentType:blob.type});
+            if(!up.error) image=admin.storage.from('ud4-products').getPublicUrl(path).data.publicUrl;
+          }catch(e){}
+        }
+        await admin.from('products').upsert({id:String(p.id),name:String(p.name||''),price:Number(p.price||0),description:String(p.desc||p.description||''),image_url:image||''});
+      }
+    }
+    const ls=JSON.parse(localStorage.getItem('ud4settings')||'null');
+    if(ls) await admin.from('settings').upsert({id:1,data:Object.assign({},DEFAULT_SETTINGS,ls)});
+    const lo=JSON.parse(localStorage.getItem('ud4orders')||'[]');
+    if(Array.isArray(lo)&&lo.length){
+      const existing=await admin.from('orders').select('name,phone,total,created_at');
+      const rows=(existing.data||[]);
+      const fresh=lo.filter(o=>!rows.some(x=>x.name===o.name&&x.phone===o.phone&&Number(x.total)===Number(o.total)&&new Date(x.created_at||0).getTime()===new Date(o.date||o.created_at||0).getTime()));
+      if(fresh.length) await admin.from('orders').insert(fresh.map(o=>({name:o.name,phone:o.phone,city:o.city,address:o.address,delivery:o.delivery||'',total:Number(o.total||0),items:o.items||[],created_at:o.date||o.created_at||new Date().toISOString(),status:o.status||'جديد'})));
+    }
+    localStorage.setItem('ud4CloudMigrated','1');
+  }catch(e){console.warn('Migration failed',e)}
+}
+async function loadData(){
+  const pr=await admin.from('products').select('*').order('created_at',{ascending:true});if(pr.error)throw pr.error;
+  products=(pr.data||[]).map(x=>({id:x.id,name:x.name,price:Number(x.price),desc:x.description||'',image_url:x.image_url||''}));
+  const st=await admin.from('settings').select('data').eq('id',1).maybeSingle();
+  settings=Object.assign({},DEFAULT_SETTINGS,st.data?.data||{});
+  localStorage.setItem('ud4products',JSON.stringify(products));localStorage.setItem('ud4settings',JSON.stringify(settings));
+}
+function saveProductsCache(){localStorage.setItem('ud4products',JSON.stringify(products));renderProducts();stats()}
+function show(id,btn){document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));btn.classList.add('active');if(id==='orders')renderOrders();if(id==='products')renderProducts();stats()}
+function renderProducts(){const el=$('productList');if(!products.length){el.innerHTML='<div class="empty">ما كاين حتى منتج.</div>';return}el.innerHTML=products.map(p=>`<div class="product"><div class="thumb">${p.image_url?`<img src="${esc(p.image_url)}">`:'PERFUME'}</div><div class="pinfo"><b>${esc(p.name)}</b><small>${esc(p.desc||'بدون وصف')}</small><div class="price">${Number(p.price)} DH</div></div><div class="actions"><button class="edit" onclick="editProduct('${esc(p.id)}')">تعديل</button><button class="delete" onclick="deleteProduct('${esc(p.id)}')">حذف</button></div></div>`).join('')}
+function newProduct(){editor.style.display='block';editorTitle.textContent='إضافة منتج';pid.value='';pname.value='';pprice.value='';pdesc.value='';pimage.value='';scrollTo(0,editor.offsetTop)}
+function editProduct(id){const p=products.find(x=>String(x.id)===String(id));if(!p)return;editor.style.display='block';editorTitle.textContent='تعديل المنتج';pid.value=p.id;pname.value=p.name;pprice.value=p.price;pdesc.value=p.desc||'';pimage.value='';scrollTo(0,editor.offsetTop)}
+function closeEditor(){editor.style.display='none'}
+async function uploadImage(file,id){
+  const ext=(file.name.split('.').pop()||'jpg').toLowerCase().replace(/[^a-z0-9]/g,'')||'jpg';
+  const path='products/'+id+'-'+Date.now()+'.'+ext;
+  const {error}=await admin.storage.from('ud4-products').upload(path,file,{upsert:true,contentType:file.type||'image/jpeg'});
+  if(error)throw error;
+  return admin.storage.from('ud4-products').getPublicUrl(path).data.publicUrl;
+}
+async function saveProduct(e){
+  e.preventDefault();
+  const id=pid.value||'p'+Date.now(),old=products.find(x=>String(x.id)===String(id)),file=pimage.files[0];
+  const btn=e.submitter;btn.disabled=true;btn.textContent='جاري الحفظ...';
+  try{
+    let image=old?.image_url||'';if(file)image=await uploadImage(file,id);
+    const obj={id,name:pname.value.trim(),price:Number(pprice.value),description:pdesc.value.trim(),image_url:image};
+    const {error}=await admin.from('products').upsert(obj);if(error)throw error;
+    await loadData();closeEditor();alert('تم حفظ المنتج ومزامنته بين الأجهزة ✅');
+  }catch(err){console.error(err);alert('تعذر حفظ المنتج: '+(err.message||err))}
+  finally{btn.disabled=false;btn.textContent='حفظ المنتج'}
+}
+async function deleteProduct(id){const p=products.find(x=>String(x.id)===String(id));if(!p)return;if(!confirm('حذف '+p.name+' ؟'))return;const {error}=await admin.from('products').delete().eq('id',id);if(error){alert('تعذر الحذف: '+error.message);return}await loadData()}
+async function renderOrders(){
+  const el=$('orderList');el.innerHTML='<div class="empty">جاري تحميل الطلبات...</div>';
+  const {data,error}=await admin.from('orders').select('*').order('created_at',{ascending:false});
+  if(error){el.innerHTML='<div class="empty">تعذر تحميل الطلبات.</div>';return}
+  if(!data?.length){el.innerHTML='<div class="empty">مازال ما كاين حتى طلب.</div>';return}
+  el.innerHTML=data.map(o=>`<div class="order"><div class="topline"><strong>طلب #${o.id}</strong><span class="status">${esc(o.status||'جديد')}</span></div><p>👤 ${esc(o.name)}<br>📞 ${esc(o.phone)}<br>📍 ${esc(o.city)} — ${esc(o.address)}<br>💰 <b>${Number(o.total||0)} DH</b><br>🛒 ${esc((o.items||[]).join('، '))}<br>🕒 ${new Date(o.created_at).toLocaleString('ar-MA')}</p><select onchange="setStatus(${o.id},this.value)"><option ${!o.status||o.status==='جديد'?'selected':''}>جديد</option><option ${o.status==='قيد المعالجة'?'selected':''}>قيد المعالجة</option><option ${o.status==='تم الشحن'?'selected':''}>تم الشحن</option><option ${o.status==='مكتمل'?'selected':''}>مكتمل</option><option ${o.status==='ملغى'?'selected':''}>ملغى</option></select></div>`).join('');
+}
+async function setStatus(id,status){const {error}=await admin.from('orders').update({status}).eq('id',id);if(error)alert('تعذر تحديث الحالة');else renderOrders()}
+async function stats(){document.getElementById('statProducts').textContent=products.length;const {data}=await admin.from('orders').select('total');const orders=data||[];document.getElementById('statOrders').textContent=orders.length;document.getElementById('statSales').textContent=orders.reduce((s,o)=>s+Number(o.total||0),0)+' DH'}
+function loadSettingsForm(){sBrand.value=settings.brand;sTagline.value=settings.tagline;sTopText.value=settings.topText;sPayment.value=settings.payment;sHeroSmall.value=settings.heroSmall;sHeroTitle.value=settings.heroTitle;sHeroDesc.value=settings.heroDesc;sHeroButton.value=settings.heroButton;sProductsTitle.value=settings.productsTitle;sAccent.value=settings.accent||'#d4af37';sBg.value=settings.bg||'#090909';sFont.value=settings.font||DEFAULT_SETTINGS.font;sHeroVisible.checked=settings.heroVisible!==false}
+async function saveSettings(e){e.preventDefault();const file=sBgImage.files[0];const btn=e.submitter;btn.disabled=true;btn.textContent='جاري الحفظ...';try{let bgImage=settings.bgImage||'';if(file)bgImage=await uploadImage(file,'background');const next={brand:sBrand.value.trim(),tagline:sTagline.value,topText:sTopText.value,payment:sPayment.value,heroSmall:sHeroSmall.value,heroTitle:sHeroTitle.value,heroDesc:sHeroDesc.value,heroButton:sHeroButton.value,productsTitle:sProductsTitle.value,accent:sAccent.value,bg:sBg.value,font:sFont.value,bgImage,heroVisible:sHeroVisible.checked};const {error}=await admin.from('settings').upsert({id:1,data:next});if(error)throw error;settings=next;localStorage.setItem('ud4settings',JSON.stringify(settings));alert('تم حفظ الإعدادات ومزامنتها بين الأجهزة ✅')}catch(err){alert('تعذر حفظ الإعدادات: '+(err.message||err))}finally{btn.disabled=false;btn.textContent='حفظ الإعدادات'}}
+function resetSettings(){if(!confirm('ترجع جميع إعدادات المتجر للوضع الافتراضي؟'))return;settings={...DEFAULT_SETTINGS};admin.from('settings').upsert({id:1,data:settings}).then(r=>{if(r.error)alert('تعذر الحفظ');else{loadSettingsForm();alert('تمت إعادة الإعدادات الافتراضية ✅')}})}
+(async()=>{const ok=await login();if(!ok)return;await migrateLocalData();try{await loadData();loadSettingsForm();renderProducts();await stats()}catch(e){console.error(e);alert('تعذر الاتصال بقاعدة البيانات: '+(e.message||e))}})();
+
+</script>
+</body></html>
